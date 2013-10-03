@@ -18,6 +18,7 @@ public class PrintPrimes {
 
 	  public static void main(String[] args) {
 	      PrintPrimes printPrimes = new PrintPrimes(300, 50, 4, 10, 30);
+	      
 	      printPrimes.calculatePrimes();
 	      printPrimes.printPrimes();
 	  }
@@ -40,14 +41,16 @@ public class PrintPrimes {
 	      int startPoint = 1;							
 	      int ORD = 2;
 	      int SQUARE = 9;
+	      
+	      int increment = 2;
 
 	      for(int primesFoundSoFar = 1; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
 	        do {
-	        	startPoint = startPoint + 2;
+	        	startPoint = startPoint + increment;
 	        	
 	        	if (startPoint == SQUARE) {
 		            ORD = ORD + 1;
-		            SQUARE = square(listOfPrimes[ORD]);
+		            SQUARE = computeSquare(listOfPrimes[ORD]);
 		            MULT[ORD - 1] = startPoint;
 	        	}
 	          
@@ -100,10 +103,11 @@ public class PrintPrimes {
 	        }
 	    }
 	    
-	    public int square(int number){
+	    public int computeSquare(int number){
 	    	int result = number * number;
 	    	
 	    	return result;
 	    }
 	    
 	}
+
