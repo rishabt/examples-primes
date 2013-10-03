@@ -47,7 +47,7 @@ public class PrintPrimes {
 	        	
 	        	if (startPoint == SQUARE) {
 		            ORD = ORD + 1;
-		            SQUARE = listOfPrimes[ORD] * listOfPrimes[ORD];
+		            SQUARE = square(listOfPrimes[ORD]);
 		            MULT[ORD - 1] = startPoint;
 	        	}
 	          
@@ -100,5 +100,10 @@ public class PrintPrimes {
 	        }
 	    }
 	    
+	    public int square(int number){
+	    	int result = number * number;
+	    	
+	    	return result;
+	    }
+	    
 	}
-
