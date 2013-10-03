@@ -83,9 +83,13 @@ public class PrintPrimes {
 	      }
 	    }
 
+	  
+	    /* The following method prints the primes calculated in the previous method on the screen in a pre-assigned format, which can be changed
+	     * by changing a few values when the constructor is initialized. 
+	     */
 	    public void printPrimes() {
-	        int PAGENUMBER = 1;
-	        int PAGEOFFSET = 1;
+	        int PAGENUMBER = 1;											//Page number as displayed
+	        int PAGEOFFSET = 1;											//Page offset	
 	        
 	        while (PAGEOFFSET <= numberOfPrimes) {
 	        	
@@ -93,7 +97,7 @@ public class PrintPrimes {
 	                               " Prime Numbers --- Page " + PAGENUMBER);
 	        	System.out.println("");
 	        	
-	        	setFormat(PAGEOFFSET);
+	        	setFormat(PAGEOFFSET);									//Helper method called to set and print the format 
 	        	
 	        	System.out.println("\f");
 	        	PAGENUMBER = PAGENUMBER + 1;
@@ -101,13 +105,17 @@ public class PrintPrimes {
 	        }
 	    }
 	    
-	    public int computeSquare(int number){
+	    public int computeSquare(int number){							//Helper method to compute teh square of a number
 	    	int result = number * number;
 	    	
 	    	return result;
 	    }
 	    
-	    public void setFormat(int PAGEOFFSET){
+	    /* The following method takes as input the pageoffset and sets the format of the numbers to be printed and prints them out 
+	     * on the screen
+	     */
+	    
+	    public void setFormat(int PAGEOFFSET){										
 	    	for (int ROWOFFSET = PAGEOFFSET; ROWOFFSET < PAGEOFFSET + numberOfRows; ROWOFFSET++){
         		
 	            for (int C = 0; C < numberOfColumns;C++){
