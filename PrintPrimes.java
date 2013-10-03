@@ -6,7 +6,7 @@ public class PrintPrimes {
 	  int ORDMAX;
 	  int listOfPrimes[];
 
-	  public PrintPrimes(int numberOfPrimes, int numberOfRows, int numberOfColumns, int WW, int ORDMAX) {
+	  public PrintPrimes(int numberOfPrimes, int numberOfRows, int numberOfColumns, int WW, int ORDMAX) {	// ---> Constructor
 	    this.numberOfPrimes = numberOfPrimes;
 	    this.numberOfRows  = numberOfRows;
 	    this.numberOfColumns  = numberOfColumns;
@@ -17,10 +17,10 @@ public class PrintPrimes {
 
 
 	  public static void main(String[] args) {
-	      PrintPrimes printPrimes = new PrintPrimes(300, 50, 4, 10, 30);
+	      PrintPrimes printPrimes = new PrintPrimes(300, 50, 4, 10, 30);		//Calls the constructor
 	      
-	      printPrimes.calculatePrimes();
-	      printPrimes.printPrimes();
+	      printPrimes.calculatePrimes();										//Primes calculated and stored in the array 'listOfPrimes'
+	      printPrimes.printPrimes();											//The list of primes printed on the screen in a pre-assigned format
 	  }
 
 	  public void calculatePrimes() {
@@ -32,46 +32,53 @@ public class PrintPrimes {
 	      listOfPrimes[1] = 2;
 	      calculateOddPrimes();
 	  }
+	  
+	  /* Calculates all the odd prime numbers, since 2 is the only even prime number, rest are all odd. The counter starts with 3.
+	   * In the process when we find an odd prime number, all it's odd multiples are stored in an array (primeMult). As the process 
+	   * continues, the composite numbers in the array are compared with the odd numbers as the counter increases, if they are equal
+	   * the obtained number is not prime, and we move on to a new number, and the process restarts.
+	   */
 
 	  private void calculateOddPrimes() {
-	      boolean JPRIME;
-	      int N;
-	      int MULT[] = new int[ORDMAX + 1];
+	      boolean JPRIME;												//Some variables initialized for further use
+	      int index;
+	      int primeMult[] = new int[ORDMAX + 1];						//Odd multiples of primes stored in this array
 
-	      int startPoint = 1;							
+	      int startPoint = 1;											//Startpoint set to 1	
 	      int ORD = 2;
-	      int primeSquare = 9;
+	      int primeSquare = 9;											
 	      
 	      int increment = 2;
 
 	      for(int primesFoundSoFar = 1; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
 	        do {
-	        	startPoint = startPoint + increment;
+	        	startPoint = startPoint + increment;					//As the process flows, the startpoint incremented by 2
 	        	
 	        	if (startPoint == primeSquare) {
 		            ORD = ORD + 1;
 		            primeSquare = computeSquare(listOfPrimes[ORD]);
-		            MULT[ORD - 1] = startPoint;
+		            primeMult[ORD - 1] = startPoint;
 	        	}
 	          
-	        	N = 2;
+	        	index = 2;
 	        	JPRIME = true;
 	          
-	        	while (N < ORD && JPRIME) {
+	        	while (index < ORD && JPRIME) {
 	        		
-	        		while (MULT[N] < startPoint){
-	        			MULT[N] = MULT[N] + listOfPrimes[N] + listOfPrimes[N];
+	        		while (primeMult[index] < startPoint){
+	        			primeMult[index] = primeMult[index] + listOfPrimes[index] + listOfPrimes[index];
 	        		}
 	        		
-	        		if (MULT[N] == startPoint){
+	        		if (primeMult[index] == startPoint){
 	        			JPRIME = false;
 	        		}
 	        		
-	        		N = N + 1;
+	        		index = index + 1;
 	        	}
 	        	
 	        } while (!JPRIME);
 	        
+	        //After the do-while loop we obtain the prime number, and we add it to the listOfPrimes array
 	        listOfPrimes[primesFoundSoFar] = startPoint;
 	      }
 	    }
