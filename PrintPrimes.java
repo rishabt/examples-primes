@@ -40,7 +40,7 @@ public class PrintPrimes {
 
 	      int startPoint = 1;							
 	      int ORD = 2;
-	      int SQUARE = 9;
+	      int primeSquare = 9;
 	      
 	      int increment = 2;
 
@@ -48,9 +48,9 @@ public class PrintPrimes {
 	        do {
 	        	startPoint = startPoint + increment;
 	        	
-	        	if (startPoint == SQUARE) {
+	        	if (startPoint == primeSquare) {
 		            ORD = ORD + 1;
-		            SQUARE = computeSquare(listOfPrimes[ORD]);
+		            primeSquare = computeSquare(listOfPrimes[ORD]);
 		            MULT[ORD - 1] = startPoint;
 	        	}
 	          
@@ -86,16 +86,7 @@ public class PrintPrimes {
 	                               " Prime Numbers --- Page " + PAGENUMBER);
 	        	System.out.println("");
 	        	
-	        	for (int ROWOFFSET = PAGEOFFSET; ROWOFFSET < PAGEOFFSET + numberOfRows; ROWOFFSET++){
-	        		
-		            for (int C = 0; C < numberOfColumns;C++){
-		            	if (ROWOFFSET + C * numberOfRows <= numberOfPrimes){
-		            		System.out.format("%10d", listOfPrimes[ROWOFFSET + C * numberOfRows]);
-		            	}
-		            }
-		            
-		            System.out.println("");
-	        	}
+	        	setFormat(PAGEOFFSET);
 	        	
 	        	System.out.println("\f");
 	        	PAGENUMBER = PAGENUMBER + 1;
@@ -107,6 +98,19 @@ public class PrintPrimes {
 	    	int result = number * number;
 	    	
 	    	return result;
+	    }
+	    
+	    public void setFormat(int PAGEOFFSET){
+	    	for (int ROWOFFSET = PAGEOFFSET; ROWOFFSET < PAGEOFFSET + numberOfRows; ROWOFFSET++){
+        		
+	            for (int C = 0; C < numberOfColumns;C++){
+	            	if (ROWOFFSET + C * numberOfRows <= numberOfPrimes){
+	            		System.out.format("%10d", listOfPrimes[ROWOFFSET + C * numberOfRows]);
+	            	}
+	            }
+	            
+	            System.out.println("");
+        	}
 	    }
 	    
 	}
